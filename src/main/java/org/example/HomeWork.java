@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,9 +24,23 @@ public class HomeWork extends BinaryIntSearchTree {
      * Сигнатуру метода не меняем
      */
     public List<Integer> findMaxDigits(int count, int upperBound) {
-        //TODO реализовать метод
-        return null;
+        List<Integer> result = new ArrayList<>();
+        findMaxDigitsRecursive(root, count, upperBound, result);
+        return result;
     }
 
+    private void findMaxDigitsRecursive(Node node, int count, int upperBound, List<Integer> result) {
+        if (node == null || result.size() >= count){
+            return;
+        }
+        //обход right
+        findMaxDigitsRecursive(node.right, count, upperBound, result);
 
+        //добавляем по условию
+        if (node.value <= upperBound && result.size() < count){
+            result.add(node.value);
+        }
+
+        findMaxDigitsRecursive(node.left, count, upperBound, result);
+    }
 }
