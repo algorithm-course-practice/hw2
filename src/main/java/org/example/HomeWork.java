@@ -25,8 +25,6 @@ public class HomeWork extends BinaryIntSearchTree {
      */
     public List<Integer> findMaxDigits(int count, int upperBound) {
         //TODO реализовать метод
-//        Node current = root;
-//        List<Integer> list = new ArrayList<>();
         if (root == null) {
             return null;
         } else {
