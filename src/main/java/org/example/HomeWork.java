@@ -1,10 +1,11 @@
 package org.example;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
 public class HomeWork extends BinaryIntSearchTree {
-
     /**
      * <h1>Задание 1.</h1>
      * Дан класс BinaryTree, который реализует бинарное дерево поиска.
@@ -23,8 +24,31 @@ public class HomeWork extends BinaryIntSearchTree {
      * Сигнатуру метода не меняем
      */
     public List<Integer> findMaxDigits(int count, int upperBound) {
-        //TODO реализовать метод
-        return null;
+        if (root == null) {
+            return null;
+        } else {
+            // проходим по всему дереву и добавлем все значения не больше upperBound в список
+            Node current = root;
+            List<Integer> list = new ArrayList<>();
+            addValues(current, list, upperBound);
+            // сортируем в порядке убывания
+            Collections.sort(list, Collections.reverseOrder());
+            // возвращаем нужное количество
+            if (count > list.size() || count < 0) {
+                throw new IndexOutOfBoundsException("Incorrect toIndex argument");
+            }
+            return list.subList(0, count);
+        }
+    }
+
+    private void addValues(Node current, List<Integer> list, int upperBound) {
+        if (current != null) {
+            if (current.value <= upperBound) {
+                list.add(current.value);
+            }
+            addValues(current.left, list, upperBound);
+            addValues(current.right, list, upperBound);
+        }
     }
 
 
