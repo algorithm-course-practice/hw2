@@ -24,17 +24,19 @@ public class HomeWork extends BinaryIntSearchTree {
      * Сигнатуру метода не меняем
      */
     public List<Integer> findMaxDigits(int count, int upperBound) {
-        //TODO реализовать метод
         if (root == null) {
             return null;
         } else {
-            // добавлем все значения не больше upperBound в список
+            // проходим по всему дереву и добавлем все значения не больше upperBound в список
             Node current = root;
             List<Integer> list = new ArrayList<>();
             addValues(current, list, upperBound);
             // сортируем в порядке убывания
             Collections.sort(list, Collections.reverseOrder());
             // возвращаем нужное количество
+            if (count > list.size() || count < 0) {
+                throw new IndexOutOfBoundsException("Incorrect toIndex argument");
+            }
             return list.subList(0, count);
         }
     }
