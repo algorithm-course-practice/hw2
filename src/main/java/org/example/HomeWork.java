@@ -27,7 +27,6 @@ public class HomeWork extends BinaryIntSearchTree {
         //TODO реализовать метод
         List<Integer> result = new ArrayList<>();
         findMaxDigitsHelper(root, upperBound, count, result);
-        // Преобразуем список в массив
         return result;
 
     }
